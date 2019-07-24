@@ -22,13 +22,10 @@ class App extends React.Component {
     });
   };
 
-  componentDidMount() {
-    const responsePromise = fetch(BASE_URL);
-    responsePromise.then(dataPromise => {
-      dataPromise.json().then(data => {
-        console.log(data);
-      });
-    });
+  async componentDidMount() {
+    const responsePromise = await fetch(BASE_URL);
+    const data = await responsePromise.json();
+    console.log(data);
   }
 
   render() {
