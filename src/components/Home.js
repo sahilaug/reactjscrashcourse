@@ -1,8 +1,23 @@
 import React, { Component } from "react";
+import Card from "./Card";
 
 class Home extends Component {
   render() {
-    return <div className="p20">HomePage</div>;
+    const { data } = this.props;
+    return (
+      <div
+        className="p20"
+        style={{
+          display: "flex",
+          flex: 1,
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "space-evenly"
+        }}
+      >
+        {data.length ? data.map(d => <Card cardData={d} />) : null}
+      </div>
+    );
   }
 }
 
