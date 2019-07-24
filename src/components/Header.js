@@ -18,7 +18,7 @@ class Header extends Component {
               fontWeight: "bold"
             }}
           >
-            Hello World
+            {this.props.headerText}
           </div>
         </div>
       </div>
