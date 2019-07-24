@@ -36,3 +36,7 @@
 .p20 {
   padding: 20px;
 }
+
+.active-link {
+  border: 1px solid #61dafb;
+}
