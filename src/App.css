@@ -40,3 +40,11 @@
 .active-link {
   border: 1px solid #61dafb;
 }
+
+.card-container {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}

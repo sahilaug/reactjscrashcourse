@@ -5,16 +5,7 @@ class Home extends Component {
   render() {
     const { data } = this.props;
     return (
-      <div
-        className="p20"
-        style={{
-          display: "flex",
-          flex: 1,
-          flexDirection: "row",
-          flexWrap: "wrap",
-          justifyContent: "space-evenly"
-        }}
-      >
+      <div className="p20 card-container">
         {data.length
           ? data.map(d => (
               <Card cardData={d} toggleLike={this.props.toggleLike} />

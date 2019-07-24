@@ -59,7 +59,10 @@ class App extends React.Component {
             <Home data={this.state.data} toggleLike={this.toggleLike} />
           )}
         />
-        <Route path="/favourites" component={Favourites} />
+        <Route
+          path="/favourites"
+          component={() => <Favourites data={this.state.data} />}
+        />
       </Router>
     );
   }
