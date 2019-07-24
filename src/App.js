@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Favourites from "./components/Favourites";
 import "./App.css";
+const BASE_URL =
+  "http://api.tvmaze.com/search/shows?q=breaking%20bad&embed=episodes";
 
 class App extends React.Component {
   constructor() {
@@ -21,7 +23,12 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    console.log("componentDidMount");
+    const responsePromise = fetch(BASE_URL);
+    responsePromise.then(dataPromise => {
+      dataPromise.json().then(data => {
+        console.log(data);
+      });
+    });
   }
 
   render() {
