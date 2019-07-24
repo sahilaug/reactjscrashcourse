@@ -11,7 +11,8 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      theme: "dark"
+      theme: "dark",
+      data: []
     };
   }
 
@@ -25,7 +26,7 @@ class App extends React.Component {
   async componentDidMount() {
     const responsePromise = await fetch(BASE_URL);
     const data = await responsePromise.json();
-    console.log(data);
+    this.setState({ data });
   }
 
   render() {
@@ -36,7 +37,11 @@ class App extends React.Component {
           curTheme={this.state.theme}
           toggleTheme={this.toggleTheme}
         />
-        <Route path="/" exact component={Home} />
+        <Route
+          path="/"
+          exact
+          component={() => <Home data={this.state.data} />}
+        />
         <Route path="/favourites" component={Favourites} />
       </Router>
     );
