@@ -1,13 +1,20 @@
 import React, { Component } from "react";
 
 class Header extends Component {
+  constructor() {
+    super();
+    this.state = {
+      theme: "dark"
+    };
+  }
+
   render() {
     return (
       <div>
         <div
           style={{
-            backgroundColor: "black",
-            color: "white",
+            backgroundColor: this.state.theme === "dark" ? "black" : "white",
+            color: this.state.theme === "dark" ? "white" : "black",
             height: "60px",
             padding: "15px"
           }}
