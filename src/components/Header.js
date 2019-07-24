@@ -8,6 +8,13 @@ class Header extends Component {
     };
   }
 
+  toggleTheme = () => {
+    const newTheme = this.state.theme === "dark" ? "light" : "dark";
+    this.setState({
+      theme: newTheme
+    });
+  };
+
   render() {
     return (
       <div>
@@ -16,9 +23,14 @@ class Header extends Component {
             backgroundColor: this.state.theme === "dark" ? "black" : "white",
             color: this.state.theme === "dark" ? "white" : "black",
             height: "60px",
-            padding: "15px"
+            padding: "15px",
+            display: "flex",
+            justifyContent: "space-between"
           }}
         >
+          <div>
+            <button onClick={this.toggleTheme}>{this.state.theme}</button>
+          </div>
           <div
             style={{
               fontSize: "20px",
