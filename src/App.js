@@ -6,6 +6,7 @@ import Favourites from "./components/Favourites";
 import "./App.css";
 const BASE_URL =
   "http://api.tvmaze.com/search/shows?q=breaking%20bad&embed=episodes";
+export const ThemeContext = React.createContext({ theme: "dark" });
 
 class App extends React.Component {
   constructor() {
@@ -47,22 +48,24 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <Header
-          headerText="Header"
-          curTheme={this.state.theme}
-          toggleTheme={this.toggleTheme}
-        />
-        <Route
-          path="/"
-          exact
-          component={() => (
-            <Home data={this.state.data} toggleLike={this.toggleLike} />
-          )}
-        />
-        <Route
-          path="/favourites"
-          component={() => <Favourites data={this.state.data} />}
-        />
+        <ThemeContext.Provider value={{ theme: this.state.theme }}>
+          <Header
+            headerText="Header"
+            curTheme={this.state.theme}
+            toggleTheme={this.toggleTheme}
+          />
+          <Route
+            path="/"
+            exact
+            component={() => (
+              <Home data={this.state.data} toggleLike={this.toggleLike} />
+            )}
+          />
+          <Route
+            path="/favourites"
+            component={() => <Favourites data={this.state.data} />}
+          />
+        </ThemeContext.Provider>
       </Router>
     );
   }
