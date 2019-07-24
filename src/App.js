@@ -2,6 +2,20 @@ import React from "react";
 import Header from "./components/Header";
 
 class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      theme: "dark"
+    };
+  }
+
+  toggleTheme = () => {
+    const newTheme = this.state.theme === "dark" ? "light" : "dark";
+    this.setState({
+      theme: newTheme
+    });
+  };
+
   componentDidMount() {
     console.log("componentDidMount");
   }
@@ -9,7 +23,11 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header headerText="Header" />
+        <Header
+          headerText="Header"
+          curTheme={this.state.theme}
+          toggleTheme={this.toggleTheme}
+        />
       </div>
     );
   }
