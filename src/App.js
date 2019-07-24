@@ -5,7 +5,7 @@ import Home from "./components/Home";
 import Favourites from "./components/Favourites";
 import "./App.css";
 const BASE_URL =
-  "http://api.tvmaze.com/search/shows?q=breaking%20bad&embed=episodes";
+  "https://api.tvmaze.com/search/shows?q=breaking%20bad&embed=episodes";
 export const ThemeContext = React.createContext({ theme: "dark" });
 
 class App extends React.Component {
