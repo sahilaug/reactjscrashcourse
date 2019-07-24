@@ -2,7 +2,7 @@ import React from "react";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Card = ({ cardData, toggleLike }) => {
+const Card = ({ cardData, toggleLike, showLikeButton }) => {
   return cardData.show.id ? (
     <div
       key={cardData.show.id}
@@ -34,11 +34,13 @@ const Card = ({ cardData, toggleLike }) => {
         }}
       >
         <h1>{cardData.show.name}</h1>
-        <FontAwesomeIcon
-          icon={faHeart}
-          onClick={() => toggleLike(cardData.show.id)}
-          style={{ color: cardData.isLiked ? "red" : "black" }}
-        />
+        {showLikeButton ? (
+          <FontAwesomeIcon
+            icon={faHeart}
+            onClick={() => toggleLike(cardData.show.id)}
+            style={{ color: cardData.isLiked ? "red" : "black" }}
+          />
+        ) : null}
       </div>
     </div>
   ) : null;

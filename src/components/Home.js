@@ -8,7 +8,11 @@ class Home extends Component {
       <div className="p20 card-container">
         {data.length
           ? data.map(d => (
-              <Card cardData={d} toggleLike={this.props.toggleLike} />
+              <Card
+                cardData={d}
+                toggleLike={this.props.toggleLike}
+                showLikeButton={true}
+              />
             ))
           : null}
       </div>
