@@ -23,6 +23,21 @@ class App extends React.Component {
     });
   };
 
+  toggleLike = id => {
+    const newData = this.state.data.map(d => {
+      let returnObj;
+      if (d.show.id === id) {
+        returnObj = d.isLiked
+          ? { ...d, isLiked: false }
+          : { ...d, isLiked: true };
+      } else {
+        returnObj = d;
+      }
+      return returnObj;
+    });
+    this.setState({ data: newData });
+  };
+
   async componentDidMount() {
     const responsePromise = await fetch(BASE_URL);
     const data = await responsePromise.json();
@@ -40,7 +55,9 @@ class App extends React.Component {
         <Route
           path="/"
           exact
-          component={() => <Home data={this.state.data} />}
+          component={() => (
+            <Home data={this.state.data} toggleLike={this.toggleLike} />
+          )}
         />
         <Route path="/favourites" component={Favourites} />
       </Router>

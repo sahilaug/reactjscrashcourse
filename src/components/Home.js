@@ -15,7 +15,11 @@ class Home extends Component {
           justifyContent: "space-evenly"
         }}
       >
-        {data.length ? data.map(d => <Card cardData={d} />) : null}
+        {data.length
+          ? data.map(d => (
+              <Card cardData={d} toggleLike={this.props.toggleLike} />
+            ))
+          : null}
       </div>
     );
   }
