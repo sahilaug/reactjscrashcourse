@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class Header extends Component {
   render() {
@@ -15,13 +16,14 @@ class Header extends Component {
           }}
         >
           <div>
-            <button
-              onClick={this.props.toggleTheme}
-              style={{ textTransform: "capitalize" }}
-            >
-              {this.props.curTheme}
-            </button>
+            <Link to="/" className="App-link">
+              Home
+            </Link>
+            <Link to="/favourites" className="App-link">
+              Favourites
+            </Link>
           </div>
+
           <div
             style={{
               fontSize: "20px",
@@ -29,6 +31,14 @@ class Header extends Component {
             }}
           >
             {this.props.headerText}
+          </div>
+          <div>
+            <button
+              onClick={this.props.toggleTheme}
+              style={{ textTransform: "capitalize" }}
+            >
+              {this.props.curTheme}
+            </button>
           </div>
         </div>
       </div>
