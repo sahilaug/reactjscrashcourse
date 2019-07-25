@@ -20,7 +20,6 @@
 }
 
 .App-link {
-  color: #61dafb;
   padding: 5px;
 }
 
@@ -47,4 +46,16 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
+}
+
+.font-dark {
+  color: white;
+}
+
+.font-light {
+  color: black;
+}
+
+.p10 {
+  padding: 10px;
 }

@@ -22,14 +22,14 @@ class Header extends Component {
                 <NavLink
                   to="/"
                   exact
-                  className="App-link"
+                  className={`p10 font-${value.theme}`}
                   activeClassName="active-link"
                 >
                   Home
                 </NavLink>
                 <NavLink
                   to="/favourites"
-                  className="App-link"
+                  className={`p10 font-${value.theme}`}
                   activeClassName="active-link"
                 >
                   Favourites
