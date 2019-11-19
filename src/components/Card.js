@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ThemeContext } from "../App";
 
 const Card = ({ cardData, toggleLike, showLikeButton }) => {
-  debugger;
   return cardData.show.id ? (
     <ThemeContext.Consumer>
       {value => (

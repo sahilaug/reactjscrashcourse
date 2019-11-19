@@ -3,19 +3,15 @@ import Header from "./components/Header";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Favourites from "./components/Favourites";
+import useTheme from './hooks/useTheme';
 import "./App.css";
 const BASE_URL =
   "https://api.tvmaze.com/search/shows?q=breaking%20bad&embed=episodes";
 export const ThemeContext = React.createContext({ theme: "dark" });
 
 const App = () => {
-  const [theme, setTheme] = useState('dark')
-  const [data, setData] = useState([])
-
-  const toggleTheme = () => {
-    const newTheme = theme === "dark" ? "light" : "dark";
-    setTheme(newTheme);
-  };
+  const [data, setData] = useState([]);
+  const [theme, toggleTheme] = useTheme();
 
   const toggleLike = id => {
     const newData = data.map(d => {
