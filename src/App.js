@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./components/Header";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "./components/Home";
@@ -8,24 +8,17 @@ const BASE_URL =
   "https://api.tvmaze.com/search/shows?q=breaking%20bad&embed=episodes";
 export const ThemeContext = React.createContext({ theme: "dark" });
 
-class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      theme: "dark",
-      data: []
-    };
-  }
+const App = () => {
+  const [theme, setTheme] = useState('dark')
+  const [data, setData] = useState([])
 
-  toggleTheme = () => {
-    const newTheme = this.state.theme === "dark" ? "light" : "dark";
-    this.setState({
-      theme: newTheme
-    });
+  const toggleTheme = () => {
+    const newTheme = theme === "dark" ? "light" : "dark";
+    setTheme(newTheme);
   };
 
-  toggleLike = id => {
-    const newData = this.state.data.map(d => {
+  const toggleLike = id => {
+    const newData = data.map(d => {
       let returnObj;
       if (d.show.id === id) {
         returnObj = d.isLiked
@@ -36,39 +29,40 @@ class App extends React.Component {
       }
       return returnObj;
     });
-    this.setState({ data: newData });
+    setData(newData);
   };
 
-  async componentDidMount() {
-    const responsePromise = await fetch(BASE_URL);
-    const data = await responsePromise.json();
-    this.setState({ data });
-  }
+  useEffect(() => {
+    const fetchData = async () => {
+      const responsePromise = await fetch(BASE_URL);
+      const data = await responsePromise.json();
+      setData(data);
+    }
+    fetchData();
+  }, [])
 
-  render() {
-    return (
-      <Router>
-        <ThemeContext.Provider value={{ theme: this.state.theme }}>
-          <Header
-            headerText="Header"
-            curTheme={this.state.theme}
-            toggleTheme={this.toggleTheme}
-          />
-          <Route
-            path="/"
-            exact
-            component={() => (
-              <Home data={this.state.data} toggleLike={this.toggleLike} />
-            )}
-          />
-          <Route
-            path="/favourites"
-            component={() => <Favourites data={this.state.data} />}
-          />
-        </ThemeContext.Provider>
-      </Router>
-    );
-  }
+  return (
+    <Router>
+      <ThemeContext.Provider value={{ theme: theme }}>
+        <Header
+          headerText="Header"
+          curTheme={theme}
+          toggleTheme={toggleTheme}
+        />
+        <Route
+          path="/"
+          exact
+          component={() => (
+            <Home data={data} toggleLike={toggleLike} />
+          )}
+        />
+        <Route
+          path="/favourites"
+          component={() => <Favourites data={data} />}
+        />
+      </ThemeContext.Provider>
+    </Router>
+  );
 }
 
 export default App;
