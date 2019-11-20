@@ -4,7 +4,7 @@ const useThemeState = () => {
     const [theme, setTheme] = useState('dark')
 
     const toggleTheme = () => {
-        const newTheme = theme === "dark" ? "light" : "dark";
+        const newTheme = theme == "dark" ? "light" : "dark";
         setTheme(newTheme);
     };
 
